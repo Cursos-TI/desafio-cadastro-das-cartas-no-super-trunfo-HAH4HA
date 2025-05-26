@@ -1,8 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-// Estrutura para a carta
 typedef struct {
     char nome[50];
     int populacao;
@@ -10,10 +6,7 @@ typedef struct {
     float pib;
     int pontos_turisticos;
 } Carta;
-
-int main() {
-    // (Código para definição de cartas, embaralho, distribuição, etc.)
-    // Exemplo de definição de cartas
+    int main() {
     Carta cartas[10];
     strcpy(cartas[0].nome, "Brasil");
     cartas[0].populacao = 210000000;
@@ -36,7 +29,6 @@ int main() {
     printf("Escolha uma característica para comparar (populacao, area, pib, pontos_turisticos): ");
     scanf("%s", caracteristica);
 
-    // (Código para comparar e determinar o vencedor)
 
     return 0;
 }
