@@ -1,34 +1,72 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
 typedef struct {
-    char nome[50];
-    int populacao;
-    float area;
-    float pib;
-    int pontos_turisticos;
+    char estado;                  // Letra de A a H
+    char codigo[4];               // Ex: A01, B03
+    char nomeCidade[100];        // Nome da cidade
+    int populacao;               // População
+    float area;                  // Área em km²
+    float pib;                   // PIB
+    int pontosTuristicos;       // Número de pontos turísticos
 } Carta;
-    int main() {
-    Carta cartas[10];
-    strcpy(cartas[0].nome, "Brasil");
-    cartas[0].populacao = 210000000;
-    cartas[0].area = 8500000.0;
-    cartas[0].pib = 2000000000.0;
-    cartas[0].pontos_turisticos = 500;
 
-    // (Outros exemplos de cartas)
 
-    // (Código para embaralhar e distribuir)
+void lerCarta(Carta *carta, int numero) {
+    printf("\nDigite os dados da Carta %d:\n", numero);
+    
+    printf("Estado (A-H): ");
+    scanf(" %c", &carta->estado);
 
-    // Exemplo de comparação (um jogador escolhe uma carta e uma característica)
-    int jogador = 0;
-    int carta_escolhida = 0;
-    char caracteristica[50];
+    printf("Código da Carta (ex: A01): ");
+    scanf("%s", carta->codigo);
 
-    printf("Jogador %d, escolha uma carta (0-%d): ", jogador + 1, 9);
-    scanf("%d", &carta_escolhida);
+    printf("Nome da Cidade: ");
+    getchar(); // Consumir o '\n' pendente
+    fgets(carta->nomeCidade, sizeof(carta->nomeCidade), stdin);
+    
+    size_t len = strlen(carta->nomeCidade);
+    if (len > 0 && carta->nomeCidade[len - 1] == '\n') {
+        carta->nomeCidade[len - 1] = '\0';
+    }
 
-    printf("Escolha uma característica para comparar (populacao, area, pib, pontos_turisticos): ");
-    scanf("%s", caracteristica);
+    printf("População: ");
+    scanf("%d", &carta->populacao);
 
+    printf("Área (em km²): ");
+    scanf("%f", &carta->area);
+
+    printf("PIB (em bilhões de reais): ");
+    scanf("%f", &carta->pib);
+
+    printf("Número de Pontos Turísticos: ");
+    scanf("%d", &carta->pontosTuristicos);
+}
+
+
+void exibirCarta(Carta carta, int numero) {
+    printf("\nCarta %d:\n", numero);
+    printf("Estado: %c\n", carta.estado);
+    printf("Código: %s\n", carta.codigo);
+    printf("Nome da Cidade: %s\n", carta.nomeCidade);
+    printf("População: %d\n", carta.populacao);
+    printf("Área: %.2f km²\n", carta.area);
+    printf("PIB: %.2f bilhões de reais\n", carta.pib);
+    printf("Número de Pontos Turísticos: %d\n", carta.pontosTuristicos);
+}
+
+int main() {
+    Carta carta1, carta2;
+
+    
+    lerCarta(&carta1, 1);
+    lerCarta(&carta2, 2);
+
+    exibirCarta(carta1, 1);
+    exibirCarta(carta2, 2);
 
     return 0;
 }
